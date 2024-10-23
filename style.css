@@ -1,0 +1,160 @@
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Rubik", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('icons/img.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.card-container {
+    perspective: 1000px;
+}
+
+.card {
+    width: 450px;
+    height: 500px;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card .front, .card .back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    transition: 0.5s ease;
+}
+
+.card .back {
+    transform: rotateY(180deg);
+}
+
+.card .back {
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    transform: rotateY(180deg);
+    padding: 20px;
+    text-align: center;
+}
+
+.card .back .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: typing 3s steps(30, end) 0.5s forwards, glitch 2.5s infinite;
+}
+
+.card .logo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    /* transform: translateX(15px); */
+    overflow: hidden;
+    border: 5px solid rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 20px 15px rgba(0, 0, 0, 0.4);
+}
+
+.card .text {
+    color: #000;
+    font-size: 28px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transform: translateX(5px);
+    text-align: center;
+    letter-spacing: 1.5px;
+    text-shadow: 0px 10px 6px rgba(0, 0, 0, 0.4);
+    animation: typing 3s steps(30, end) 0.5s forwards, glitch 2.5s infinite;
+}
+
+.contacts {
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.contacts .item {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1.2s ease;
+    transition-delay: calc(0.1s * var(--i));
+}
+
+.contacts .item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contacts .item img:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.5);
+}
+
+.card:hover .contacts .item {
+    transform: translateY(10px);
+    opacity: 1;
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: none;
+        transform: translate(0);
+    }
+    20% {
+        text-shadow: 2px 0 red, -2px 0 blue;
+    }
+    40% {
+        text-shadow: -2px 0 red, 2px 0 blue;
+        transform: translate(-2px, 2px);
+    }
+    60% {
+        text-shadow: 2px 0 red, -2px 0 blue;
+        transform: translate(2px, -2px);
+    }
+    80% {
+        text-shadow: none;
+        transform: translate(0);
+    }
+    100% {
+        text-shadow: 2px 0 red, -2px 0 blue;
+    }
+}
+
+.glitch-letter {
+    display: inline-block;
+    animation: glitch 0.3s infinite alternate;
+    animation-play-state: paused; /* Изначально анимация глюка остановлена */
+}
