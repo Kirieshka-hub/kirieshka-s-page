@@ -1,3 +1,5 @@
+/* Базовые стили, как прежде */
+
 ul, li {
     margin: 0;
     padding: 0;
@@ -71,14 +73,12 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: typing 3s steps(30, end) 0.5s forwards, glitch 2.5s infinite;
 }
 
 .card .logo {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    /* transform: translateX(15px); */
     overflow: hidden;
     border: 5px solid rgba(0, 0, 0, 0.4);
     box-shadow: 0px 20px 15px rgba(0, 0, 0, 0.4);
@@ -89,11 +89,9 @@ html, body {
     font-size: 28px;
     font-weight: 500;
     text-transform: uppercase;
-    transform: translateX(5px);
     text-align: center;
     letter-spacing: 1.5px;
     text-shadow: 0px 10px 6px rgba(0, 0, 0, 0.4);
-    animation: typing 3s steps(30, end) 0.5s forwards, glitch 2.5s infinite;
 }
 
 .contacts {
@@ -128,33 +126,108 @@ html, body {
     opacity: 1;
 }
 
+/* Glitch effect */
 @keyframes glitch {
     0% {
         text-shadow: none;
         transform: translate(0);
     }
-    20% {
+    10% {
         text-shadow: 2px 0 red, -2px 0 blue;
+        transform: translate(-1px, 1px);
+    }
+    20% {
+        text-shadow: -2px 0 red, 2px 0 blue;
+        transform: translate(1px, -1px);
+    }
+    30% {
+        text-shadow: 2px 0 red, -2px 0 blue;
+        transform: translate(-2px, 2px);
     }
     40% {
         text-shadow: -2px 0 red, 2px 0 blue;
-        transform: translate(-2px, 2px);
-    }
-    60% {
-        text-shadow: 2px 0 red, -2px 0 blue;
         transform: translate(2px, -2px);
     }
-    80% {
+    60% {
         text-shadow: none;
         transform: translate(0);
     }
-    100% {
-        text-shadow: 2px 0 red, -2px 0 blue;
+    80% {
+        text-shadow: 1px 0 red, -1px 0 blue;
+        transform: translate(0.5px, -0.5px);
     }
+    100% {
+        text-shadow: none;
+        transform: translate(0);
+    }
+}
+
+.glitch-text {
+    position: relative;
+    display: inline-block;
+    animation: glitch 1s infinite alternate;
 }
 
 .glitch-letter {
     display: inline-block;
-    animation: glitch 0.3s infinite alternate;
-    animation-play-state: paused; /* Изначально анимация глюка остановлена */
+    animation: glitch 0.5s infinite alternate;
+    animation-play-state: running;
+}
+
+/* Адаптивная часть для мобильных устройств */
+
+/* Ширина экрана 768px и меньше */
+@media (max-width: 768px) {
+    .card {
+        width: 300px;
+        height: 400px;
+    }
+
+    .card .logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .card .text {
+        font-size: 22px;
+    }
+
+    .contacts .item img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Ширина экрана 480px и меньше (для смартфонов) */
+@media (max-width: 480px) {
+    html, body {
+        justify-content: flex-start;
+        align-items: flex-start;
+        background-size: cover;
+        padding: 20px;
+    }
+
+    .card {
+        width: 250px;
+        height: 350px;
+    }
+
+    .card .logo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .card .text {
+        font-size: 18px;
+    }
+
+    .contacts .item img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .contacts {
+        flex-direction: column;
+        gap: 10px;
+    }
 }

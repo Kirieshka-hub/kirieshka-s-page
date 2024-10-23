@@ -32,6 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
             backTextTyped = false;
         }
     });
+
+    // Включаем и выключаем глюки
+    setInterval(() => {
+        toggleGlitchEffect(backTextElements);
+        toggleGlitchEffect(frontTextElements);
+    }, 5000); // Интервал в 5 секунд
 });
 
 function typeTextWithGlitch(element, typingSpeed) {
@@ -82,4 +88,10 @@ function typeTextWithGlitch(element, typingSpeed) {
 function getRandomChar() {
     const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+=-{}[];:<>,.?/';
     return characters.charAt(Math.floor(Math.random() * characters.length));
+}
+
+function toggleGlitchEffect(elements) {
+    elements.forEach((element) => {
+        element.classList.toggle('glitch-text-active');
+    });
 }
